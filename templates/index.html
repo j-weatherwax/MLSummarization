@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static\styles.css">
+    <title>Explain Like I'm Five</title>
+</head>
+<body>
+    <div class="headingblock hcenter">
+        <h2>Summarize</h2>
+        <p>Summarize some text</p>
+        <!-- <p>Take any text and make it so a child can understand.</p> -->
+    </div>
+    <div class="ta-div hcenter">
+        <textarea autocomplete="off" autocapitalize="off" spellcheck="off" placeholder="Explain Like I'm Five..." id="textbox"></textarea>
+    </div>
+    <div class="sub hcenter">
+        <input type="submit" class="btn" id="btn" value="Send It!">
+    </div>
+    <script>
+        let btn = document.getElementById("btn")
+        btn.addEventListener("click", () => {
+            let textbox = document.getElementById("textbox")
+            let text = textbox.value
+
+            let formData = new FormData();
+            formData.append('input', text);
+
+            fetch('http://127.0.0.1:5000/summarize', {
+                method: 'POST',
+                body: formData
+            }).then(function (response) {
+                return response.text()
+            }).then(data => {
+                textbox.value = data
+            })
+        })
+        
+    </script>
+</body>
+</html>
