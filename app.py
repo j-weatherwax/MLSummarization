@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Load the T5 model and tokenizer
 path = "./model"
 tokenizer = T5Tokenizer.from_pretrained("t5-small", legacy=False)
-model = TFT5ForConditionalGeneration.from_pretrained("t5-small")
+model = TFT5ForConditionalGeneration.from_pretrained("google/t5-efficient-tiny-el6")
 
 @app.route("/")
 def home():
