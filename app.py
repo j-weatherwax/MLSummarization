@@ -8,12 +8,10 @@ app = Flask(__name__)
 # Load the T5 model and tokenizer
 path = "./model"
 tokenizer = T5Tokenizer.from_pretrained("t5-small", legacy=False)
-model = TFT5ForConditionalGeneration.from_pretrained(path)
+# model = TFT5ForConditionalGeneration.from_pretrained(path)
 
 @app.route("/")
 def home():
-    # response = request.get["/sum"]
-    # return response
     return render_template('index.html')
 
 @app.route('/summarize', methods=['POST'])
@@ -29,6 +27,7 @@ def summarize_text():
         # Tokenize the input text
         inputs = tokenizer.encode("summarize: " + input_text, return_tensors='pt', padding = 'longest', truncation=True)
 
+        return "no"
         # Generate summary
         summary_ids = model.generate(inputs,
                                 num_beams=4,
