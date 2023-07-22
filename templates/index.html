@@ -28,7 +28,7 @@
             let formData = new FormData();
             formData.append('input', text);
 
-            fetch('http://127.0.0.1:5000/summarize', {
+            fetch('http://ec2-3-145-44-227.us-east-2.compute.amazonaws.com:8080/summarize', {
                 method: 'POST',
                 body: formData
             }).then(function (response) {
